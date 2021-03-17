@@ -8,8 +8,7 @@ public class AdressBook {
 	private int count = 0; // Number of contacts in the array(in address book)
 	public String fileName;
 
-	AdressBook(String fileName) {
-		this.fileName = fileName;
+	AdressBook() {
 	}
 
 	// Add Contact

@@ -17,8 +17,9 @@ public class Main {
 			if(addressbooks.containsKey(name)) {
 				System.out.println("Address book already exists");
 				addressbook = addressbooks.get(name);
+				i--;
 			}else {
-				addressbook= new AdressBook("Info.txt");
+				addressbook= new AdressBook();
 			}
 			//AdressBook addressbook= new AdressBook("Info.txt");
 			while (!quit) {
