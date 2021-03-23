@@ -35,7 +35,7 @@ public class AddressBook1 {
 		addContact(name,new Person("sai", "pavani","telangana","bhadrachalam"));
 		addContact(name,new Person("vishnu", "priya","maharastra","mumbai"));
 		addContact(name,new Person("pavani", "reddy","andhra","gudem"));
-		addContact(name,new Person("sai", "pavani","andhra","vizag"));
+		addContact(name,new Person("nikil", "pavani","andhra","vizag"));
 		}else {
 			System.out.println("Address book:"+name+" is not present");
 
@@ -52,6 +52,7 @@ public class AddressBook1 {
 		}
 		System.out.println("Contacts in the given location are below:");
         result.forEach(person -> System.out.println(person.toString()));
+        System.out.println("Number of persons with given query is:"+result.size());
 	
         HashMap<String,ArrayList<Person>> stateDict = new HashMap<String, ArrayList<Person>>();
 	    HashMap<String, ArrayList<Person>> cityDict = new HashMap<String, ArrayList<Person>>();
