@@ -1,5 +1,6 @@
 package com.address;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -52,7 +53,41 @@ public class AddressBook1 {
 		System.out.println("Contacts in the given location are below:");
         result.forEach(person -> System.out.println(person.toString()));
 	
-		
+        HashMap<String,ArrayList<Person>> stateDict = new HashMap<String, ArrayList<Person>>();
+	    HashMap<String, ArrayList<Person>> cityDict = new HashMap<String, ArrayList<Person>>();
+	    for(AddressBook1 add:addressbooks.values()) {
+			for(Person per:add.contacts) {
+				if(stateDict.containsKey(per.getState())) {
+					ArrayList<Person> persons= stateDict.get(per.getState());
+					persons.add(per);
+					stateDict.put(per.getState(), persons);
+					
+				}else {
+					ArrayList<Person> persons= new ArrayList<Person>();
+					persons.add(per);
+					stateDict.put(per.getState(),persons);
+				}
+				if(cityDict.containsKey(per.getCity())) {
+					ArrayList<Person> persons= cityDict.get(per.getCity());
+					persons.add(per);
+					cityDict.put(per.getCity(), persons);
+					
+				}else {
+					ArrayList<Person> persons= new ArrayList<Person>();
+					persons.add(per);
+					cityDict.put(per.getState(),persons);
+				}
+			}
+		}
+	    
+	    System.out.println("State with persons are as below");
+	    for (String person: stateDict.keySet()) {
+	        System.out.println(person + " " + Arrays.asList(stateDict.get(person)));
+	    }
+	    System.out.println("Cities with persons are as below");
+	    for (String person: cityDict.keySet()) {
+	        System.out.println(person + " " + Arrays.asList(cityDict.get(person)));
+	    }
 		
     }
 			
