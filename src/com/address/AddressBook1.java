@@ -75,7 +75,7 @@ public class AddressBook1 {
 				}else {
 					ArrayList<Person> persons= new ArrayList<Person>();
 					persons.add(per);
-					cityDict.put(per.getState(),persons);
+					cityDict.put(per.getCity(),persons);
 				}
 			}
 		}
