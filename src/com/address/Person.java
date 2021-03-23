@@ -3,8 +3,10 @@ package com.address;
 public class Person {
 	    private String fname;
 	    private String lname;
+	    private String city;
+	    private String state;
 	    
-	          public String getFName() {
+	    public String getFName() {
 	        return fname;
 	    }
 
@@ -19,15 +21,32 @@ public class Person {
 	    public void setLname(String lname) {
 	        this.lname = lname;
 	    }
+	    public String getCity() {
+	        return city;
+	    }
 
-	    public Person(String fname, String lname) {
+	    public void setCity(String city) {
+	        this.city = city;
+	    }
+	    public String getState() {
+	        return state;
+	    }
+
+	    public void set(String state) {
+	        this.state = state;
+	    }
+
+	    public Person(String fname, String lname, String state, String city) {
 	        this.fname = fname;
 	        this.lname = lname;
+	        this.city = city;
+	        this.state = state;
+	        
 	    }
 	    	
 		@Override
 		public String toString() {
-			return "[" + this.fname + ", " + this.lname + "]";
+			return "[" + this.fname + ", " + this.lname + ", " + this.city + ", " + this.state + "]";
 		}
 
 
