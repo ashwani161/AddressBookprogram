@@ -6,6 +6,7 @@ public class PersonDetails {
 	public String city;
 	public String state;
 	public int zip;
+	
 
 	public String getfirstName() {
 		return firstName;
