@@ -1,6 +1,7 @@
 package addressBookJDBC;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
@@ -23,4 +24,14 @@ public class AddressBookTest {
 		boolean result = addressBook.checkAddressBookInSyncWithDB("Kathi");
 		Assert.assertTrue(result);
 	}
+	
+	 @Test
+	    public void givenDateRange_WhenContact_ShouldReturnEmpCount() throws SQLException{
+	        addressBook = new AddressBook();
+	        addressBookDataList = addressBook.readAddressBookData(AddressBook.IOService.DB_IO);
+	        LocalDate startDate = LocalDate.of(2018, 02, 01);
+	        LocalDate endDate = LocalDate.now();
+	        addressBookDataList = addressBook.readPersonDataForDateRange(startDate, endDate);
+	        Assert.assertEquals(3, addressBookDataList.size());
+	    }
 }

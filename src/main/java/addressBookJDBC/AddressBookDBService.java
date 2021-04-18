@@ -3,6 +3,7 @@ package addressBookJDBC;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import java.time.LocalDate;
 
 public class AddressBookDBService {
 	private static AddressBookDBService addressBookDBService;
@@ -32,7 +33,7 @@ public class AddressBookDBService {
 		try (Connection connection = this.getConnection()) {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
-			addressBookList = this.getEmployeePayrollData(resultSet);
+			addressBookList = this.getPersonData(resultSet);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -58,7 +59,7 @@ public class AddressBookDBService {
 		try {
 			addressBookDataStatement.setString(1, name);
 			ResultSet resultSet = addressBookDataStatement.executeQuery();
-			employeePayrollList = this.getEmployeePayrollData(resultSet);
+			employeePayrollList = this.getPersonData(resultSet);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -76,7 +77,7 @@ public class AddressBookDBService {
 		return null;
 	}
 
-	private List<AddressBookData> getEmployeePayrollData(ResultSet resultSet) {
+	private List<AddressBookData> getPersonData(ResultSet resultSet) {
 		List<AddressBookData> addressBookList = new ArrayList<>();
 		try {
 			while (resultSet.next()) {
@@ -96,5 +97,20 @@ public class AddressBookDBService {
 		}
 		return addressBookList;
 	}
+	private List<AddressBookData> getPersonDataUsingDB(String sql) {
+        List<AddressBookData> addressBookList = new ArrayList<>();
+        try (Connection connection = this.getConnection()) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            addressBookList = this.getPersonData(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return addressBookList;
+    }
 
+    public List<AddressBookData> getPersonDataForDateRange(LocalDate startDate, LocalDate endDate) {
+        String sql = String.format("SELECT * FROM AddressBook WHERE START BETWEEN '%s' AND '%s';", Date.valueOf(startDate), Date.valueOf(endDate));
+        return this.getPersonDataUsingDB(sql);
+    }
 }

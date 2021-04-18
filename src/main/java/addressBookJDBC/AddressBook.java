@@ -2,6 +2,7 @@ package addressBookJDBC;
 
 import java.util.List;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class AddressBook {
 	public enum IOService {
@@ -36,9 +37,11 @@ public class AddressBook {
 	}
 
 	private AddressBookData getEmployeePayrollData(String name) {
-		return this.addressBookList.stream()
-				.filter(employeePayrollDataItem -> employeePayrollDataItem.Name.equals(name)).findFirst()
-				.orElse(null);
+        return this.addressBookList.stream().filter(PersonDataItem -> PersonDataItem.Name.equals(name)).findFirst().orElse(null);
+
 	}
+	public List<AddressBookData> readPersonDataForDateRange(LocalDate startDate, LocalDate endDate) {
+        return addressBookDBService.getPersonDataForDateRange(startDate, endDate);
+    }
 
 }
