@@ -113,4 +113,17 @@ public class AddressBookDBService {
         String sql = String.format("SELECT * FROM AddressBook WHERE START BETWEEN '%s' AND '%s';", Date.valueOf(startDate), Date.valueOf(endDate));
         return this.getPersonDataUsingDB(sql);
     }
+    
+    public List<AddressBookData> getCountByState(String state) {
+        List<AddressBookData> addressBookDataList = new ArrayList<>();
+        String sql = String.format("SELECT * FROM AddressBook where state = '%s';", state);
+        try (Connection connection = this.getConnection()){
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            addressBookDataList = this.getPersonData(resultSet);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return addressBookDataList;
+    }
 }

@@ -34,4 +34,11 @@ public class AddressBookTest {
 	        addressBookDataList = addressBook.readPersonDataForDateRange(startDate, endDate);
 	        Assert.assertEquals(3, addressBookDataList.size());
 	    }
+	 
+	 @Test
+	    public void givenContactDataInDB_whenCountByState_ShouldMatchWithExpectedValue() {
+	        addressBook = new AddressBook();
+	        List<AddressBookData>  addressBookDataList = addressBook.countByState("Andhrapradesh");
+	        Assert.assertEquals(2, addressBookDataList.size());
+	    }
 }
