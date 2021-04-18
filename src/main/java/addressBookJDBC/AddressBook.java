@@ -51,5 +51,10 @@ public class AddressBook {
 	public List<AddressBookData> readPersonDataForDateRange(LocalDate startDate, LocalDate endDate) {
         return addressBookDBService.getPersonDataForDateRange(startDate, endDate);
     }
+	
+	public void addContactToAddressBook(int id,String Name, String lastName, String address, String city, String state, int zip, String phone, String email,String start) {
+        addressBookList.add(addressBookDBService.addContact(id,Name, lastName, address, city, state, zip, Integer.parseInt
+        		(phone), email,start));
+    }
 
 }

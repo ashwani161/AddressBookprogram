@@ -12,9 +12,10 @@ public class AddressBookData {
 	public int zip;
 	public int phoneNumber;
 	public String email;
+	public String Start;
 
 	public AddressBookData(int id, String Name, String lastName, String address, String city, String state, int zip,
-			int phoneNumber, String email) {
+			int phoneNumber, String email, String Start) {
 		this.id = id;
 		this.Name = Name;
 		this.lastName = lastName;
@@ -24,13 +25,15 @@ public class AddressBookData {
 		this.zip = zip;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+		this.Start = Start;
+
 	}
 
 	@Override
 	public String toString() {
 		return "AddressBookData{" + "id='" + id + '\'' + "Name='" + Name + '\'' + ", lastName='" + lastName + '\''
 				+ ", address='" + address + '\'' + ", city='" + city + '\'' + ", state='" + state + '\'' + ", zip="
-				+ zip + ", phoneNumber=" + phoneNumber + ", email='" + email + '\'' + '}';
+				+ zip + ", phoneNumber=" + phoneNumber + ", email='" + email + '\'' + ", Start=" + Start +'}';
 	}
 
 	@Override
@@ -43,6 +46,6 @@ public class AddressBookData {
 		return id == that.id && zip == that.zip && phoneNumber == that.phoneNumber && Objects.equals(Name, that.Name)
 				&& Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address)
 				&& Objects.equals(city, that.city) && Objects.equals(state, that.state)
-				&& Objects.equals(email, that.email);
+				&& Objects.equals(email, that.email) && Objects.equals(Start, that.Start);
 	}
 }
