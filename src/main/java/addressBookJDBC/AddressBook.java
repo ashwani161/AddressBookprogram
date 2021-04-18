@@ -5,6 +5,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class AddressBook {
+	
+	 public List<AddressBookData> countByCity(String city) {
+	        return addressBookDBService.getCount(city);
+	    }
+	 
 	public List<AddressBookData> countByState(String state) {
         return addressBookDBService.getCountByState(state);
     }

@@ -41,4 +41,11 @@ public class AddressBookTest {
 	        List<AddressBookData>  addressBookDataList = addressBook.countByState("Andhrapradesh");
 	        Assert.assertEquals(2, addressBookDataList.size());
 	    }
+	 
+	 @Test
+	    public void givenContactDataInDB_whenCountByCity_ShouldMatchWithExpectedValue() {
+	        addressBook = new AddressBook();
+	        List<AddressBookData>  addressBookDataList = addressBook.countByCity("Hyderabad");
+	        Assert.assertEquals(1, addressBookDataList.size());
+	    }
 }
