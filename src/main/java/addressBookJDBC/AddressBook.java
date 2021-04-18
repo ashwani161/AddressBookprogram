@@ -1,28 +1,44 @@
 package addressBookJDBC;
 
 import java.util.List;
+import java.sql.SQLException;
 
 public class AddressBook {
 	public enum IOService {
-        DB_IO
-    }
+		DB_IO
+	}
 
-    private List<AddressBookData> addressBookList;
-    public final AddressBookDBService addressBookDBService;
+	private List<AddressBookData> addressBookList;
+	public final AddressBookDBService addressBookDBService;
 
-    public AddressBook() {
-        addressBookDBService = AddressBookDBService.getInstance();
-    }
+	public AddressBook() {
+		addressBookDBService = AddressBookDBService.getInstance();
+	}
 
-    public AddressBook(List<AddressBookData> addressBookList) {
-        this();
-        this.addressBookList = addressBookList;
-    }
+	public AddressBook(List<AddressBookData> addressBookList) {
+		this();
+		this.addressBookList = addressBookList;
+	}
 
-    public List<AddressBookData> readAddressBookData(IOService ioService) {
-        if (ioService.equals(IOService.DB_IO))
-            return this.addressBookList = addressBookDBService.getAddressBookDataUsingDB();
-        return null;
-    }
+	public List<AddressBookData> readAddressBookData(IOService ioService) throws SQLException {
+		if (ioService.equals(IOService.DB_IO))
+			return this.addressBookList = addressBookDBService.getAddressBookDataUsingDB();
+		return null;
+	}
+
+	public void updateContact(String address, String name) {
+		int result = addressBookDBService.updateContactDetails(name, address);
+	}
+
+	public boolean checkAddressBookInSyncWithDB(String name) {
+		List<AddressBookData> addressBookDataList = addressBookDBService.getEmployeePayrollData(name);
+		return addressBookDataList.get(0).equals(getEmployeePayrollData(name));
+	}
+
+	private AddressBookData getEmployeePayrollData(String name) {
+		return this.addressBookList.stream()
+				.filter(employeePayrollDataItem -> employeePayrollDataItem.Name.equals(name)).findFirst()
+				.orElse(null);
+	}
 
 }
